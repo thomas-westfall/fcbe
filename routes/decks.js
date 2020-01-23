@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Deck } = require('../database/models');
 const { Card } = require('../database/models');
-
+const request = require('request');
 // GET ALL DECKS
 router.get('/', function(req, res, next) {
     Deck.findAll({ include: [{
@@ -45,6 +45,8 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/translate', (req, res) => {
+  console.log("hi")
+  console.log(process.env.TRANSLATE)
   var q = req.body.q;
   console.log(q);
 var options = { method: 'POST',
