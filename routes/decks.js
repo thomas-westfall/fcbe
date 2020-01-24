@@ -67,7 +67,7 @@ router.post('/translate', (req, res) => {
 var options = { method: 'POST',
 url: 'https://translation.googleapis.com/language/translate/v2',
 form: 
- { key: "AIzaSyD3Jd3pSdwJ2hNvVsGEewc_TIhDrwf0kXA",
+ { key: PROCESS.ENV.TRANSLATE,
    q: q,
    target: 'en' } };
   request(options, function (error, response, body) {
@@ -85,7 +85,7 @@ router.post('/translatetrad', (req, res) => {
 var options = { method: 'POST',
 url: 'https://translation.googleapis.com/language/translate/v2',
 form: 
- { key: "AIzaSyD3Jd3pSdwJ2hNvVsGEewc_TIhDrwf0kXA",
+ { key: PROCESS.ENV.TRANSLATE,
    q: q,
    target: 'zh-Hant' } };
   request(options, function (error, response, body) {
