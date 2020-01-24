@@ -3,8 +3,8 @@ const db = require('../db');
 
 const Deck = db.define("deck", {
 
-  totalPrice: {
-    type: Sequelize.FLOAT,
+  deckName: {
+    type: Sequelize.STRING,
     allowNull: false
   },
 

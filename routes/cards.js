@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const { Card } = require('../database/models');
-
+const request = require('request');
+const querystring = require('querystring');
 /* GETS */
 // FIND ALL ORDERS
 router.get('/', function(req, res, next) {
     Card.findAll()
-      .then(orders => res.json(cards))
+      .then(cards => res.json(cards))
       .catch(next)
   });
 
 // GET ALL CARDS BY DECK ID
-router.get('/:deckId', function(req, res, next) {
+router.get('/d/:deckId', function(req, res, next) {
   Card.findAll({
       where: {deckId: req.params.deckId}
     })
@@ -27,6 +28,20 @@ router.get('/:userId', function(req, res, next) {
     .then(cards => res.json(cards))
     .catch(next)
 });
+
+router.post('/pinyin', function(req,res,next){
+  console.log("YESNO")
+  var q = req.body.q;
+  console.log(q);
+var options = { method: 'GET',
+url: 'https://glosbe.com/transliteration/api?from=Han&dest=Latin&text=' + encodeURI(q) + '&format=json', };
+console.log(options.url)
+  request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+  console.log(body);
+  res.send(body);
+  });
+})
 
 /* POSTS */
 // CREATES A NEW CARD
