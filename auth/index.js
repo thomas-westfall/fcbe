@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { User, Deck, Card } = require("../database/models");
-
-router.post("/login", async (req, res, next) => {
+const cors = require('cors')
+router.post("/login", cors(), async (req, res, next) => {
   try {
     const user = await User.findOne({ 
       where: { 
@@ -46,7 +46,7 @@ router.post("/login", async (req, res, next) => {
 
 });
 
-router.post("/signup", async (req, res, next) => {
+router.post("/signup", cors(), async (req, res, next) => {
   try {
     const user = await User.create(req.body);
     // req.login(user, err => (err ? next(err) : res.json(user)));
@@ -64,7 +64,7 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
-router.delete("/logout", (req, res) => {
+router.delete("/logout", cors(), (req, res) => {
   req.logout();
   req.session.destroy();
   res.status(204).end();

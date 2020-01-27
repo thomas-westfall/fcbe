@@ -3,16 +3,17 @@ const router = express.Router();
 const { Card } = require('../database/models');
 const request = require('request');
 const querystring = require('querystring');
+const cors = require('cors')
 /* GETS */
 // FIND ALL ORDERS
-router.get('/', function(req, res, next) {
+router.get('/', cors(), function(req, res, next) {
     Card.findAll()
       .then(cards => res.json(cards))
       .catch(next)
   });
 
 // GET ALL CARDS BY DECK ID
-router.get('/d/:deckId', function(req, res, next) {
+router.get('/d/:deckId', cors(), function(req, res, next) {
   Card.findAll({
       where: {deckId: req.params.deckId}
     })
@@ -21,7 +22,7 @@ router.get('/d/:deckId', function(req, res, next) {
 });
 
 // GET ALL CARDS BY USER ID
-router.get('/:userId', function(req, res, next) {
+router.get('/:userId', cors(), function(req, res, next) {
   Card.findAll({
       where: {userId: req.params.userId}
     })
