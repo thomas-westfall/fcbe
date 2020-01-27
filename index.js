@@ -60,7 +60,7 @@ const syncDatabase = () => {
 const configureApp = () => {
 
   var allowedOrigins = ['http://localhost:3000',
-                      'https://vpay-frontend.herokuapp.com'];
+                      'https://fcfeb.herokuapp.com/'];
 app.use(cors({
   credentials: true,
   origin: function(origin, callback){

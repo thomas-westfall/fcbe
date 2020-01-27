@@ -67,7 +67,7 @@ router.post('/translate', (req, res) => {
 var options = { method: 'POST',
 url: 'https://translation.googleapis.com/language/translate/v2',
 form: 
- { key: PROCESS.ENV.TRANSLATE,
+ { key: proesss.env.TRANSLATE,
    q: q,
    target: 'en' } };
   request(options, function (error, response, body) {
