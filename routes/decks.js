@@ -67,7 +67,7 @@ router.post('/translate', (req, res) => {
 var options = { method: 'POST',
 url: 'https://translation.googleapis.com/language/translate/v2',
 form: 
- { key: proesss.env.TRANSLATE,
+ { key: req.body.key,
    q: q,
    target: 'en' } };
   request(options, function (error, response, body) {
@@ -85,7 +85,7 @@ router.post('/translatetrad', (req, res) => {
 var options = { method: 'POST',
 url: 'https://translation.googleapis.com/language/translate/v2',
 form: 
- { key: PROCESS.ENV.TRANSLATE,
+ { key: req.body.key,
    q: q,
    target: 'zh-Hant' } };
   request(options, function (error, response, body) {
